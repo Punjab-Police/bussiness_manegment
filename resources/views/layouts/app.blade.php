@@ -110,7 +110,7 @@
 
                         {{-- Stocks Parent --}}
                         <button type="button" id="stocks-toggle" class="w-full flex items-center justify-between gap-3 px-4 py-2.5
-                               rounded-lg hover:bg-slate-800 transition-colors text-left">
+                                   rounded-lg hover:bg-slate-800 transition-colors text-left">
 
                             <div class="flex items-center gap-3">
 
@@ -141,8 +141,8 @@
 
                             {{-- Stock Summary --}}
                             <a href="{{ route('stock.summary') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg
-                                   text-sm text-slate-300
-                                   hover:bg-slate-800 hover:text-white transition-colors">
+                                       text-sm text-slate-300
+                                       hover:bg-slate-800 hover:text-white transition-colors">
 
                                 <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
 
@@ -153,8 +153,8 @@
 
                             {{-- Stock Ledger --}}
                             <a href="{{ route('stock.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg
-                                   text-sm text-slate-300
-                                   hover:bg-slate-800 hover:text-white transition-colors">
+                                       text-sm text-slate-300
+                                       hover:bg-slate-800 hover:text-white transition-colors">
 
                                 <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
 
@@ -175,7 +175,7 @@
 
                         {{-- Purchases Parent --}}
                         <button type="button" id="purchases-toggle" class="w-full flex items-center justify-between gap-3 px-4 py-2.5
-                               rounded-lg hover:bg-slate-800 transition-colors text-left">
+                                   rounded-lg hover:bg-slate-800 transition-colors text-left">
 
                             <div class="flex items-center gap-3">
 
@@ -206,8 +206,8 @@
 
                             {{-- Purchase History --}}
                             <a href="{{ route('purchases.index') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg
-                                   text-sm text-slate-300
-                                   hover:bg-slate-800 hover:text-white transition-colors">
+                                       text-sm text-slate-300
+                                       hover:bg-slate-800 hover:text-white transition-colors">
 
                                 <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
 
@@ -219,8 +219,8 @@
                             {{-- New Purchase --}}
                             @if (auth()->user()->hasPermission('purchases.create'))
                                 <a href="{{ route('purchases.create') }}" class="flex items-center gap-3 px-4 py-2 rounded-lg
-                                                       text-sm text-slate-300
-                                                       hover:bg-slate-800 hover:text-white transition-colors">
+                                                               text-sm text-slate-300
+                                                               hover:bg-slate-800 hover:text-white transition-colors">
 
                                     <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
 
@@ -321,7 +321,7 @@
 
 
                     {{-- Roles --}}
-                    <a href="#"
+                    <a href="{{route('admin.roles.index')}}"
                         class="flex items-center gap-3 px-4 py-2.5 rounded-lg hover:bg-slate-800 transition-colors">
 
                         <span>Roles & Permissions</span>

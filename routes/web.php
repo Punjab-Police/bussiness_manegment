@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UnitController;
@@ -99,6 +100,33 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Roles and permissions
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware('permission:roles.view')->group(function () {
+        Route::get('/admin/roles', [RolePermissionController::class, 'index'])
+            ->name('admin.roles.index');
+    });
+
+    Route::middleware('permission:roles.create')->group(function () {
+        Route::get('/admin/roles/create', [RolePermissionController::class, 'create'])
+            ->name('admin.roles.create');
+
+        Route::post('/admin/roles', [RolePermissionController::class, 'store'])
+            ->name('admin.roles.store');
+    });
+
+    Route::middleware('permission:roles.edit')->group(function () {
+        Route::get('/admin/roles/{role}/edit', [RolePermissionController::class, 'edit'])
+            ->name('admin.roles.edit');
+
+        Route::put('/admin/roles/{role}', [RolePermissionController::class, 'update'])
+            ->name('admin.roles.update');
+    });
 
     /*
     |--------------------------------------------------------------------------

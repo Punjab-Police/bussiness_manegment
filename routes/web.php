@@ -22,6 +22,7 @@ use App\Http\Controllers\CustomerLedgerController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\Admin\AuditLogController;
 
 
 /*
@@ -522,6 +523,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ]);
 });
 
+Route::get('/admin/audit-logs', [AuditLogController::class, 'index'])
+    ->middleware('permission:audit_logs.view')
+    ->name('admin.audit-logs.index');
 
 /*
 |--------------------------------------------------------------------------

@@ -51,7 +51,9 @@ class UserController extends Controller
             'roles' => ['nullable', 'array'],
             'roles.*' => [
                 'integer',
-                Rule::exists('roles', 'id')->where('status', 'active'),
+                Rule::exists('roles', 'id')->where(function ($query) {
+                    $query->whereIn('status', ['active', 1]);
+                }),
             ],
         ]);
 
@@ -73,7 +75,7 @@ class UserController extends Controller
     {
         $user->load('roles');
 
-        $roles = Role::where('status', 1)->orWhere('status','active')->orderBy('name')->get();
+        $roles = Role::where('status', 1)->orWhere('status', 'active')->orderBy('name')->get();
 
         return view('admin.users.edit', compact('user', 'roles'));
     }
@@ -89,15 +91,20 @@ class UserController extends Controller
                 Rule::unique('users', 'email')->ignore($user->id),
             ],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'status' => ['required', Rule::in(['active', 'inactive'])],
+            'status' => ['required', Rule::in(['active', 'inactive', 0, 1])],
             'roles' => ['nullable', 'array'],
             'roles.*' => [
                 'integer',
-                Rule::exists('roles', 'id')->where('status', 'active'),
+                Rule::exists('roles', 'id')->where(function ($query) {
+                    $query->whereIn('status', ['active', 1]);
+                }),
             ],
         ]);
 
-        if ($user->is(auth()->user()) && $validated['status'] !== 'active') {
+        if (
+            $user->is(auth()->user()) &&
+            ! in_array($validated['status'], ['active', 1, '1'], true)
+        ) {
             return back()->withErrors([
                 'status' => 'You cannot deactivate your own account.',
             ]);

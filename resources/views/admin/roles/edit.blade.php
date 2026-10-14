@@ -73,7 +73,6 @@
                             </div>
                         @endforeach
                     </div>
-
                     <button class="btn btn-primary">Save Changes</button>
                     <a href="{{ route('admin.roles.index') }}" class="btn btn-outline-secondary">Cancel</a>
                 </form>
